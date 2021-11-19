@@ -1,0 +1,9 @@
+{
+  "port": "18000",
+  "url": "https://api.themoviedb.org/3/movie",
+  "key": "725016de5c9faffb736f4857efaa0527",
+  "https": {
+    "key": "../sslcert/server.key",
+    "cert": "../sslcert/server.cert"
+  }
+}

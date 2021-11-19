@@ -1,0 +1,32 @@
+{
+  "swagger":"2.0"
+  ,"info":{"description":"Sample Node API"
+  ,"version":"1.0"
+  ,"title":"Sample Node API"}
+  ,"host":"localhost:18000"
+  ,"basePath":"/"
+  ,"tags":[{"name":"Accounts","description":"Accounts API"},{"name":"Cars","description":"Cars API"}]
+  ,"schemes":["http"]
+  ,"produces": ["application/json"],
+  "paths": {
+    "/tmdb/movies": {
+      "get": {
+        "x-swagger-router-controller": "tmdb",
+        "operationId": "getPopularMovies",
+        "tags": ["Tmdb"],
+        "summary": "Get all movies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get all movies",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions":{
+  }
+}

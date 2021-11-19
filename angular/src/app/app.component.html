@@ -1,0 +1,60 @@
+<div class="card">
+    <h3>Most Populars</h3>
+    <p-dataView *ngIf="isVisibleAll" #dv [value]="movies" [paginator]="true" [rows]="10" filterBy="title" layout="list">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search"
+                        (input)="dv.filter($event.target.value)">
+                </span>
+
+            </div>
+        </ng-template>
+        <ng-template let-movies pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item">
+                    <div class="product-list-detail">
+                        <img src="https://image.tmdb.org/t/p/w500/{{movies.poster_path}}" alt="Bamboo Watch">
+                        <div class="product-name">{{movies.title}}</div>
+                        <div class="product-description">{{movies.overview}}</div>
+                    </div>
+                    <div class="product-list-action">
+                        <p-button icon="pi pi-sign-in" label="Detail Of Movie" (click)="detailOfMovie(movies.id)">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+
+    <p-dataView *ngIf="!isVisibleAll" #dv [value]="moviesById" layout="list">
+        <ng-template let-moviesById pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item">
+                    <div class="product-list-detail">
+                        <img src="https://image.tmdb.org/t/p/w500/{{moviesById.poster_path}}" alt="Bamboo Watch">
+                        <div class="product-name">{{moviesById.title}}</div>
+                        <div class="product-description">{{moviesById.overview}}</div>
+                        <p-rating [ngModel]="moviesById.vote_average" [readonly]="true" [cancel]="false"></p-rating>
+
+                        <h3>Videos</h3>
+                        <div style="display:flex">
+                            <div *ngFor="let item of videos; let i = index">                      
+                                <iframe width="320" height="240" [src]="item.url">
+                                </iframe>
+                            </div>
+                        </div>
+                        <h3>Cast</h3>
+                        <div style="display:flex">
+                            <div *ngFor="let item of cast; let i = index">
+                                <img src="https://image.tmdb.org/t/p/w500/{{item.profile_path}}">
+                                <h5>{{item.name}}</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
